@@ -76,6 +76,7 @@ n8n ships a HubSpot node that covers basic contact and deal operations. This wor
 - **Email is required** — it is the deduplication key.
 - **One open deal per contact.** A new request from someone who already has an open deal updates the contact but does not open a second deal; the sales rep handles it in the existing deal.
 - **Latest submission wins** for contact fields (e.g. if the person enters a new city, HubSpot keeps the newest value).
+- **First-touch lead source.** `lead_source` is written only when the contact is created, so a returning lead keeps its original source. Unknown sources are stored as `other`. `service_type` always reflects the latest request.
 - New deals go to the first stage of the default pipeline, named like `AC Installation - Maria Teste (Manaus)`.
 
 ## Test scenarios
@@ -98,10 +99,13 @@ All tests were run with synthetic data against a HubSpot free account.
 
 1. **HubSpot:** create a *service key* with these scopes:
    `crm.objects.contacts.read/write`, `crm.objects.deals.read/write`, `crm.schemas.contacts.read`, `crm.schemas.deals.read`.
-2. **n8n:** create a **Header Auth** credential — Name `Authorization`, Value `Bearer <your-service-key>`.
-3. Import `workflow.example.json` and select that credential in the six `HubSpot -` HTTP Request nodes.
-4. Activate the workflow (webhook path: `/webhook/leadflow`).
-5. **Form:** copy `form/config.example.js` to `form/config.js`, set your webhook URL, and open `form/index.html` in a browser.
+2. **HubSpot custom contact properties** (dropdown select):
+   - `lead_source`: `website`, `referral`, `google_ads`, `social_media`, `other`
+   - `service_type`: `installation`, `maintenance`, `repair`, `inspection`, `quote`
+3. **n8n:** create a **Header Auth** credential — Name `Authorization`, Value `Bearer <your-service-key>`.
+4. Import `workflow.example.json` and select that credential in the six `HubSpot -` HTTP Request nodes.
+5. Activate the workflow (webhook path: `/webhook/leadflow`).
+6. **Form:** copy `form/config.example.js` to `form/config.js`, set your webhook URL, and open `form/index.html` in a browser.
 
 ## Limitations
 
