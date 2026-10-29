@@ -6,6 +6,8 @@ Automates incoming quote requests: a web form sends the lead to **n8n**, which v
 
 ![Workflow overview](screenshots/01-workflow.png)
 
+▶️ **[Watch the 2-minute demo video](https://youtu.be/rGSIWt6hlAQ)**: a new lead, then the same person submitting again, with no duplicates in HubSpot.
+
 ## Problem
 
 A small service company receives quote requests through its website. Today someone copies each request into the CRM by hand, so:
