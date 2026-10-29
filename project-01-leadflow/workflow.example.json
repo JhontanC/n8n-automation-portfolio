@@ -1,0 +1,701 @@
+{
+  "name": "LeadFlow - HubSpot lead capture (demo)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 1. Input & validation\nReceives the quote form, normalizes email / name / city and returns **400** with field errors when data is invalid.",
+        "height": 700,
+        "width": 688,
+        "color": 5
+      },
+      "id": "10e24afc-b1d6-48d5-96b2-2b0356efddaa",
+      "name": "Sticky - Input",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1888,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 2. Contact upsert\nSearches HubSpot by normalized email: **updates** an existing contact or **creates** a new one. Never duplicates.",
+        "height": 700,
+        "width": 880,
+        "color": 4
+      },
+      "id": "b13e667f-c2e4-40d4-94e7-598693782458",
+      "name": "Sticky - Contact",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1168,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 3. Deal logic\nReads the contact's deals. Creates a deal **only if no open deal exists**, then confirms to the form.",
+        "height": 700,
+        "width": 1252,
+        "color": 6
+      },
+      "id": "c2a2035b-9b6c-4bd6-9653-64c841f9fae3",
+      "name": "Sticky - Deal",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 4. Error handling\nAny HubSpot failure (after 3 retries) returns **503 temporary failure**. Never a false success.",
+        "height": 300,
+        "width": 500,
+        "color": 3
+      },
+      "id": "14343eca-a835-406f-9372-6c444fef4562",
+      "name": "Sticky - Errors",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "leadflow",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "4f67b52c-c651-46eb-a3e6-a166d19f70a9",
+      "name": "Webhook - Quote Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1792,
+        32
+      ],
+      "webhookId": "leadflow-quote-form-v2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Validate and normalize the incoming quote request.\nconst SERVICE_TYPES = { installation: 'AC Installation', maintenance: 'AC Maintenance', repair: 'AC Repair', inspection: 'AC Inspection', quote: 'AC Quote' };\nconst EMAIL_RE = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/;\n\nconst clean = (v) => (typeof v === 'string' ? v.trim().replace(/\\s+/g, ' ') : '');\n\n// 'maria da silva' -> 'Maria da Silva', 'são paulo' -> 'São Paulo'\nconst LOWER_WORDS = new Set(['da', 'de', 'do', 'das', 'dos', 'e']);\nconst titleCase = (s) => s.toLowerCase().split(' ')\n  .map((w, i) => (i > 0 && LOWER_WORDS.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1)))\n  .join(' ');\n\nreturn $input.all().map((item) => {\n  const body = item.json.body || {};\n  const errors = [];\n\n  const name = titleCase(clean(body.name));\n  const email = clean(body.email).replace(/\\s/g, '').toLowerCase();\n  const phone = clean(body.phone).replace(/[^\\d+]/g, '');\n  const service_type = clean(body.service_type).toLowerCase();\n  const city = titleCase(clean(body.city));\n  const message = clean(body.message).slice(0, 1000);\n  const source = clean(body.source) || 'website';\n\n  if (name.length < 2) errors.push({ field: 'name', error: 'required' });\n  if (!email) errors.push({ field: 'email', error: 'required' });\n  else if (!EMAIL_RE.test(email)) errors.push({ field: 'email', error: 'invalid_format' });\n  if (!SERVICE_TYPES[service_type]) errors.push({ field: 'service_type', error: 'must_be_one_of', allowed: Object.keys(SERVICE_TYPES) });\n  if (!city) errors.push({ field: 'city', error: 'required' });\n\n  // HubSpot contact properties. Empty values are left out so an update never erases existing data.\n  const [firstname, ...rest] = name.split(' ');\n  const contact_properties = { email, firstname, lastname: rest.join(' '), phone, city };\n  for (const key of Object.keys(contact_properties)) {\n    if (!contact_properties[key]) delete contact_properties[key];\n  }\n\n  return {\n    json: {\n      valid: errors.length === 0,\n      errors,\n      lead: {\n        name, email, phone, service_type, city, message, source,\n        deal_name: `${SERVICE_TYPES[service_type] || 'AC Request'} - ${name} (${city})`,\n        submitted_at: new Date().toISOString(),\n      },\n      contact_properties,\n    },\n  };\n});"
+      },
+      "id": "f5981bdb-1b64-42c4-8ae4-be9441ef9a68",
+      "name": "Validate & Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c2000000-0003-4000-8000-000000000003",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1c59e685-9146-43d7-819a-ebaf503641ab",
+      "name": "Is Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1456,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { status: 'validation_error', message: 'Please check the highlighted fields.', errors: $json.errors } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "d8bc6553-ffc7-4c34-84c4-602c38e094f7",
+      "name": "Respond - Validation Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -1344,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: $json.lead.email }] }], properties: ['email'], limit: 1 }) }}",
+        "options": {}
+      },
+      "id": "120c8806-ae60-42cf-99ca-07f2dfdf1bec",
+      "name": "HubSpot - Search Contact by Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1104,
+        32
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c2000000-0006-4000-8000-000000000006",
+              "leftValue": "={{ $json.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6d498ad1-acd3-4157-afda-476c83fd7d75",
+      "name": "Contact Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -880,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{ 'https://api.hubapi.com/crm/v3/objects/contacts/' + $json.results[0].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: $('Validate & Normalize').first().json.contact_properties }) }}",
+        "options": {}
+      },
+      "id": "cff9b872-fb74-42b9-a448-ab9db922557d",
+      "name": "HubSpot - Update Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -656,
+        -112
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { ...$('Validate & Normalize').first().json.contact_properties, lifecyclestage: 'lead' } }) }}",
+        "options": {}
+      },
+      "id": "62f9fe04-c5de-4b3d-aaf3-ddaebed254c7",
+      "name": "HubSpot - Create Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -656,
+        176
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Single place that knows which contact we are working with and what happened to it.\nreturn [{\n  json: {\n    contact_id: $input.first().json.id,\n    contact_action: $('HubSpot - Create Contact').isExecuted ? 'created' : 'updated',\n    lead: $('Validate & Normalize').first().json.lead,\n  },\n}];"
+      },
+      "id": "3a8b02a8-f499-4c64-85e6-b87203ba4903",
+      "name": "Contact Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -448,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v4/objects/contacts/' + $json.contact_id + '/associations/deals?limit=100' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "ed0d73d8-a99d-4dbd-970d-4e55e1a47d73",
+      "name": "HubSpot - Get Contact Deals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -208,
+        32
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c2000000-0011-4000-8000-000000000011",
+              "leftValue": "={{ ($json.results || []).length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fed8fd87-b2c4-4229-a7ba-791c76001914",
+      "name": "Has Deals?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        0,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/deals/batch/read",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: ['dealname', 'dealstage', 'hs_is_closed'], inputs: $json.results.map(r => ({ id: String(r.toObjectId) })) }) }}",
+        "options": {}
+      },
+      "id": "ba54f436-b6f2-496b-a722-19eaa6149dc6",
+      "name": "HubSpot - Read Deals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        112,
+        -192
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Input is either the deals batch read (deals have .properties) or the empty association list.\nconst contact = $('Contact Result').first().json;\nconst deals = ($input.first().json.results || []).filter((d) => d.properties);\nconst openDeal = deals.find((d) => d.properties.hs_is_closed !== 'true');\n\nreturn [{ json: { ...contact, open_deal_id: openDeal ? openDeal.id : null } }];"
+      },
+      "id": "fb7717ed-7b47-4294-b29a-be1b4c03b6d6",
+      "name": "Find Open Deal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c2000000-0014-4000-8000-000000000014",
+              "leftValue": "={{ !!$json.open_deal_id }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3407e6bf-59a1-4b0e-8514-f1b60bbcd0dd",
+      "name": "Open Deal Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        464,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { status: 'received', message: 'Thanks! Your request was received.', demo: { contact: $json.contact_action, deal: 'existing_open_deal' } } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "a9cd44c9-74fa-40c3-9a15-e6db5a4e1c38",
+      "name": "Respond - Existing Deal",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/deals",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { dealname: $json.lead.deal_name, pipeline: 'default', dealstage: 'appointmentscheduled' }, associations: [{ to: { id: $json.contact_id }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }] }] }) }}",
+        "options": {}
+      },
+      "id": "adee501c-ffb2-4135-9332-459229dd0552",
+      "name": "HubSpot - Create Deal",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        576,
+        176
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 1500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { status: 'received', message: 'Thanks! Your request was received.', demo: { contact: $('Find Open Deal').first().json.contact_action, deal: 'created' } } }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "945fdf8c-e4e3-4449-88c2-5d66368c7329",
+      "name": "Respond - Deal Created",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        832,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { status: 'temporary_failure', message: 'We could not save your request right now. Please try again in a few minutes.' } }}",
+        "options": {
+          "responseCode": 503
+        }
+      },
+      "id": "9df8fa7a-41b6-433b-a33e-9aa397a2eef4",
+      "name": "Respond - Temporary Failure",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        560
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook - Quote Form": {
+      "main": [
+        [
+          {
+            "node": "Validate & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Normalize": {
+      "main": [
+        [
+          {
+            "node": "Is Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Valid?": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Search Contact by Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Validation Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Search Contact by Email": {
+      "main": [
+        [
+          {
+            "node": "Contact Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contact Exists?": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Update Contact",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot - Create Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Update Contact": {
+      "main": [
+        [
+          {
+            "node": "Contact Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Create Contact": {
+      "main": [
+        [
+          {
+            "node": "Contact Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contact Result": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Get Contact Deals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Get Contact Deals": {
+      "main": [
+        [
+          {
+            "node": "Has Deals?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Deals?": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Read Deals",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Open Deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Read Deals": {
+      "main": [
+        [
+          {
+            "node": "Find Open Deal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Open Deal": {
+      "main": [
+        [
+          {
+            "node": "Open Deal Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Open Deal Exists?": {
+      "main": [
+        [
+          {
+            "node": "Respond - Existing Deal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot - Create Deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Create Deal": {
+      "main": [
+        [
+          {
+            "node": "Respond - Deal Created",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Temporary Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}

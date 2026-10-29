@@ -1,0 +1,10 @@
+# Local secrets / environment-specific config
+**/form/config.js
+.env
+*.local.json
+
+# Demo videos are hosted outside the repo (YouTube / GitHub attachment)
+*.mp4
+*.mov
+*.mkv
+*.webm
