@@ -63,7 +63,7 @@ Every 10 minutes
 | Tab | Key | Content |
 |---|---|---|
 | `contacts` | `hubspot_contact_id` | email, name, phone, city, lead source, service type, lifecycle stage, dates, `new_lead_notified` |
-| `deals` | `hubspot_deal_id` | contact ID, deal name, stage ID and label, amount, dates, closed/won flags, `notified_stage` |
+| `deals` | `hubspot_deal_id` | contact ID, deal name, stage ID and label, amount, dates (including `closed_at` for closed deals), closed/won flags, `notified_stage` |
 | `sync_state` | `key` | `last_synced_at`: the cursor |
 | `sync_log` | — | one row per run, plus one row per failure |
 
@@ -129,7 +129,7 @@ All tests were run with synthetic data against HubSpot free, Google Sheets and a
 
 1. **Google Sheets:** create a spreadsheet with four tabs and these header rows:
    - `contacts`: `hubspot_contact_id, email, first_name, last_name, phone, city, lead_source, service_type, lifecycle_stage, created_at, updated_at, synced_at, sync_status, new_lead_notified`
-   - `deals`: `hubspot_deal_id, hubspot_contact_id, deal_name, stage_id, stage_label, amount, created_at, updated_at, is_closed, is_won, notified_stage, synced_at, sync_status`
+   - `deals`: `hubspot_deal_id, hubspot_contact_id, deal_name, stage_id, stage_label, amount, created_at, updated_at, is_closed, is_won, notified_stage, synced_at, sync_status, closed_at`
    - `sync_state`: `key, value`, with a second row `last_synced_at` and an empty value
    - `sync_log`: `run_at, object, record_id, action, status, message`
 2. **HubSpot:** reuse the service key and **Header Auth** credential from [Project 1](../project-01-leadflow/#setup) (read scopes for contacts and deals are enough here).

@@ -25,7 +25,7 @@ Three connected automation case studies built around one scenario: **CoolAir**, 
 |---|---|---|---|---|
 | 1 | [**LeadFlow — Lead Capture & CRM Automation**](project-01-leadflow/) | Webhook intake, validation and normalization, contact deduplication, deal rules, honest error handling | n8n · HubSpot API · HTML/JS | ✅ Done |
 | 2 | [**CRM Sync & Slack Notifications**](project-02-crm-sync/) | Scheduled sync with a cursor, upsert of HubSpot records into Google Sheets, new-lead and stage-change alerts sent exactly once, failure logging and retries | n8n · HubSpot API · Google Sheets · Slack | ✅ Done |
-| 3 | **Sales & Marketing Analytics** | One-page pipeline dashboard with documented metric definitions | Google Sheets · Looker Studio | 🗓️ Planned |
+| 3 | [**Sales & Marketing Analytics**](project-03-analytics/) | One-page Looker Studio dashboard fed by the synced sheet: leads, sources, deal stages, lead-to-win rate, monthly wins, with a documented metric dictionary | Google Sheets · Looker Studio | ✅ Done |
 
 ## What every project covers
 

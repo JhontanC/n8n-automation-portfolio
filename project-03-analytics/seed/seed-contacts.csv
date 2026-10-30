@@ -1,0 +1,299 @@
+hubspot_contact_id,email,first_name,last_name,phone,city,lead_source,service_type,lifecycle_stage,created_at,updated_at,synced_at,sync_status,new_lead_notified
+seed-c-0001,mason.demo.0001@example.com,Mason,Demo,+12025550101,West Palm Beach,website,repair,opportunity,2025-11-14T23:39:00.000Z,2025-11-25T23:39:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0002,mia.sample.0002@example.com,Mia,Sample,+12025550102,Tampa,google_ads,installation,opportunity,2025-11-22T22:47:00.000Z,2025-12-21T22:47:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0003,sofia.demo.0003@example.com,Sofia,Demo,+12025550103,Miami,referral,maintenance,lead,2025-11-01T13:49:00.000Z,2025-11-02T13:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0004,diego.placeholder.0004@example.com,Diego,Placeholder,+12025550104,Miami,website,repair,customer,2025-11-12T15:01:00.000Z,2025-12-07T15:01:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0005,camila.example.0005@example.com,Camila,Example,+12025550105,Orlando,website,installation,opportunity,2025-11-24T21:58:00.000Z,2025-12-13T21:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0006,noah.test.0006@example.com,Noah,Test,+12025550106,Jacksonville,social_media,inspection,lead,2025-11-26T22:18:00.000Z,2025-11-26T22:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0007,chloe.placeholder.0007@example.com,Chloe,Placeholder,+12025550107,Miami,social_media,maintenance,customer,2025-11-22T12:08:00.000Z,2025-11-30T12:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0008,mia.demo.0008@example.com,Mia,Demo,+12025550108,Orlando,website,maintenance,customer,2025-11-10T15:37:00.000Z,2025-12-06T15:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0009,mason.placeholder.0009@example.com,Mason,Placeholder,+12025550109,Miami,google_ads,inspection,customer,2025-11-10T17:54:00.000Z,2025-11-21T17:54:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0010,grace.sample.0010@example.com,Grace,Sample,+12025550110,Miami,referral,maintenance,opportunity,2025-11-29T18:20:00.000Z,2025-12-27T18:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0011,ava.demo.0011@example.com,Ava,Demo,+12025550111,Miami,referral,repair,opportunity,2025-11-01T22:08:00.000Z,2025-11-28T22:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0012,chloe.demo.0012@example.com,Chloe,Demo,+12025550112,Orlando,referral,maintenance,lead,2025-11-09T22:18:00.000Z,2025-11-09T22:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0013,ava.placeholder.0013@example.com,Ava,Placeholder,+12025550113,Jacksonville,other,repair,customer,2025-11-04T12:05:00.000Z,2025-11-22T12:05:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0014,olivia.sample.0014@example.com,Olivia,Sample,+12025550114,Miami,google_ads,installation,customer,2025-11-04T14:16:00.000Z,2025-11-07T14:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0015,logan.sample.0015@example.com,Logan,Sample,+12025550115,Orlando,google_ads,installation,opportunity,2025-12-24T17:21:00.000Z,2026-01-17T17:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0016,james.sample.0016@example.com,James,Sample,+12025550116,West Palm Beach,social_media,maintenance,customer,2025-12-17T20:13:00.000Z,2026-01-13T20:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0017,olivia.example.0017@example.com,Olivia,Example,+12025550117,Orlando,google_ads,inspection,opportunity,2025-12-13T16:55:00.000Z,2025-12-20T16:55:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0018,daniel.sample.0018@example.com,Daniel,Sample,+12025550118,Miami,website,installation,customer,2025-12-19T19:13:00.000Z,2026-01-04T19:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0019,liam.example.0019@example.com,Liam,Example,+12025550119,Orlando,website,repair,opportunity,2025-12-02T15:40:00.000Z,2025-12-15T15:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0020,ava.placeholder.0020@example.com,Ava,Placeholder,+12025550120,Miami,website,repair,customer,2025-12-24T20:24:00.000Z,2025-12-31T20:24:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0021,liam.sample.0021@example.com,Liam,Sample,+12025550121,Tampa,website,quote,opportunity,2025-12-11T15:21:00.000Z,2025-12-27T15:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0022,camila.placeholder.0022@example.com,Camila,Placeholder,+12025550122,Tampa,website,quote,customer,2025-12-13T13:32:00.000Z,2026-01-05T13:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0023,harper.placeholder.0023@example.com,Harper,Placeholder,+12025550123,Fort Lauderdale,google_ads,inspection,opportunity,2025-12-25T13:41:00.000Z,2026-01-21T13:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0024,olivia.sample.0024@example.com,Olivia,Sample,+12025550124,Fort Lauderdale,google_ads,installation,opportunity,2025-12-08T20:08:00.000Z,2025-12-19T20:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0025,lucas.placeholder.0025@example.com,Lucas,Placeholder,+12025550125,Jacksonville,referral,maintenance,customer,2025-12-17T22:57:00.000Z,2025-12-20T22:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0026,amelia.placeholder.0026@example.com,Amelia,Placeholder,+12025550126,Orlando,website,maintenance,lead,2026-01-03T20:57:00.000Z,2026-01-04T20:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0027,daniel.sample.0027@example.com,Daniel,Sample,+12025550127,Miami,referral,repair,customer,2026-01-12T18:32:00.000Z,2026-02-12T18:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0028,sofia.demo.0028@example.com,Sofia,Demo,+12025550128,West Palm Beach,website,repair,customer,2026-01-25T20:06:00.000Z,2026-02-19T20:06:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0029,olivia.test.0029@example.com,Olivia,Test,+12025550129,Miami,referral,installation,customer,2026-01-25T18:21:00.000Z,2026-02-03T18:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0030,emma.demo.0030@example.com,Emma,Demo,+12025550130,Miami,social_media,maintenance,customer,2026-01-23T18:18:00.000Z,2026-02-16T18:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0031,ava.placeholder.0031@example.com,Ava,Placeholder,+12025550131,Miami,referral,maintenance,customer,2026-01-10T16:57:00.000Z,2026-02-07T16:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0032,mason.example.0032@example.com,Mason,Example,+12025550132,Jacksonville,website,quote,opportunity,2026-01-08T19:00:00.000Z,2026-02-04T19:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0033,liam.example.0033@example.com,Liam,Example,+12025550133,Orlando,other,maintenance,opportunity,2026-01-11T19:31:00.000Z,2026-01-30T19:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0034,ethan.test.0034@example.com,Ethan,Test,+12025550134,Tampa,google_ads,inspection,customer,2026-01-27T15:02:00.000Z,2026-02-19T15:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0035,mia.test.0035@example.com,Mia,Test,+12025550135,Tampa,website,repair,customer,2026-01-13T19:57:00.000Z,2026-01-23T19:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0036,ethan.example.0036@example.com,Ethan,Example,+12025550136,Miami,referral,repair,opportunity,2026-01-05T12:07:00.000Z,2026-01-28T12:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0037,carlos.demo.0037@example.com,Carlos,Demo,+12025550137,Miami,other,inspection,customer,2026-01-17T22:22:00.000Z,2026-01-20T22:22:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0038,amelia.placeholder.0038@example.com,Amelia,Placeholder,+12025550138,Miami,website,maintenance,lead,2026-02-25T19:02:00.000Z,2026-02-27T19:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0039,ava.placeholder.0039@example.com,Ava,Placeholder,+12025550139,Orlando,other,repair,customer,2026-02-05T12:58:00.000Z,2026-03-05T12:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0040,mia.test.0040@example.com,Mia,Test,+12025550140,Jacksonville,referral,inspection,opportunity,2026-02-13T17:41:00.000Z,2026-03-02T17:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0041,harper.placeholder.0041@example.com,Harper,Placeholder,+12025550141,Orlando,referral,quote,opportunity,2026-02-14T17:16:00.000Z,2026-02-26T17:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0042,lucas.sample.0042@example.com,Lucas,Sample,+12025550142,Jacksonville,website,maintenance,customer,2026-02-04T22:38:00.000Z,2026-03-05T22:38:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0043,james.example.0043@example.com,James,Example,+12025550143,Orlando,google_ads,maintenance,customer,2026-02-23T12:39:00.000Z,2026-03-20T12:39:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0044,harper.test.0044@example.com,Harper,Test,+12025550144,Fort Lauderdale,social_media,maintenance,opportunity,2026-02-23T12:31:00.000Z,2026-03-14T12:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0045,daniel.example.0045@example.com,Daniel,Example,+12025550145,Jacksonville,website,inspection,customer,2026-02-10T14:30:00.000Z,2026-02-24T14:30:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0046,liam.sample.0046@example.com,Liam,Sample,+12025550146,Fort Lauderdale,social_media,repair,opportunity,2026-02-12T23:24:00.000Z,2026-02-19T23:24:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0047,carlos.test.0047@example.com,Carlos,Test,+12025550147,Tampa,website,repair,lead,2026-02-09T22:04:00.000Z,2026-02-11T22:04:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0048,sofia.example.0048@example.com,Sofia,Example,+12025550148,Fort Lauderdale,website,repair,customer,2026-02-27T15:05:00.000Z,2026-03-09T15:05:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0049,henry.placeholder.0049@example.com,Henry,Placeholder,+12025550149,Orlando,other,installation,customer,2026-02-12T17:29:00.000Z,2026-03-07T17:29:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0050,amelia.placeholder.0050@example.com,Amelia,Placeholder,+12025550150,Jacksonville,website,installation,lead,2026-02-11T19:26:00.000Z,2026-02-12T19:26:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0051,mia.placeholder.0051@example.com,Mia,Placeholder,+12025550151,Fort Lauderdale,referral,maintenance,opportunity,2026-02-20T15:52:00.000Z,2026-02-25T15:52:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0052,chloe.example.0052@example.com,Chloe,Example,+12025550152,Tampa,website,inspection,customer,2026-02-21T19:08:00.000Z,2026-03-15T19:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0053,liam.sample.0053@example.com,Liam,Sample,+12025550153,West Palm Beach,website,installation,opportunity,2026-03-24T23:46:00.000Z,2026-03-31T23:46:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0054,lily.test.0054@example.com,Lily,Test,+12025550154,West Palm Beach,social_media,inspection,opportunity,2026-03-26T15:21:00.000Z,2026-04-02T15:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0055,olivia.test.0055@example.com,Olivia,Test,+12025550155,Orlando,website,repair,lead,2026-03-06T13:45:00.000Z,2026-03-07T13:45:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0056,henry.placeholder.0056@example.com,Henry,Placeholder,+12025550156,Orlando,website,repair,customer,2026-03-09T22:43:00.000Z,2026-03-20T22:43:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0057,sophia.test.0057@example.com,Sophia,Test,+12025550157,Miami,website,installation,opportunity,2026-03-11T22:32:00.000Z,2026-04-09T22:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0058,camila.example.0058@example.com,Camila,Example,+12025550158,Miami,google_ads,inspection,customer,2026-03-02T16:16:00.000Z,2026-03-05T16:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0059,camila.demo.0059@example.com,Camila,Demo,+12025550159,Jacksonville,referral,inspection,opportunity,2026-03-21T23:02:00.000Z,2026-03-29T23:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0060,mateo.example.0060@example.com,Mateo,Example,+12025550160,Orlando,referral,installation,opportunity,2026-03-23T19:27:00.000Z,2026-04-06T19:27:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0061,olivia.test.0061@example.com,Olivia,Test,+12025550161,Miami,google_ads,repair,customer,2026-03-28T15:15:00.000Z,2026-04-08T15:15:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0062,chloe.example.0062@example.com,Chloe,Example,+12025550162,Tampa,google_ads,quote,opportunity,2026-03-08T23:15:00.000Z,2026-04-04T23:15:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0063,gabriel.test.0063@example.com,Gabriel,Test,+12025550163,Jacksonville,website,maintenance,opportunity,2026-03-10T23:09:00.000Z,2026-03-15T23:09:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0064,gabriel.demo.0064@example.com,Gabriel,Demo,+12025550164,Miami,other,maintenance,customer,2026-03-16T13:10:00.000Z,2026-04-04T13:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0065,isabella.test.0065@example.com,Isabella,Test,+12025550165,Orlando,website,quote,opportunity,2026-03-08T23:01:00.000Z,2026-03-25T23:01:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0066,liam.example.0066@example.com,Liam,Example,+12025550166,Miami,social_media,quote,lead,2026-03-29T12:48:00.000Z,2026-03-30T12:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0067,chloe.example.0067@example.com,Chloe,Example,+12025550167,Jacksonville,website,repair,lead,2026-03-05T13:54:00.000Z,2026-03-07T13:54:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0068,olivia.example.0068@example.com,Olivia,Example,+12025550168,Miami,referral,maintenance,lead,2026-03-25T12:57:00.000Z,2026-03-26T12:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0069,noah.placeholder.0069@example.com,Noah,Placeholder,+12025550169,Miami,website,repair,opportunity,2026-03-09T18:50:00.000Z,2026-03-13T18:50:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0070,chloe.demo.0070@example.com,Chloe,Demo,+12025550170,Tampa,social_media,installation,opportunity,2026-03-30T15:37:00.000Z,2026-04-26T15:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0071,harper.placeholder.0071@example.com,Harper,Placeholder,+12025550171,Jacksonville,google_ads,repair,opportunity,2026-03-01T16:00:00.000Z,2026-04-01T16:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0072,grace.demo.0072@example.com,Grace,Demo,+12025550172,Fort Lauderdale,website,maintenance,customer,2026-04-02T14:53:00.000Z,2026-04-24T14:53:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0073,david.sample.0073@example.com,David,Sample,+12025550173,Orlando,referral,maintenance,opportunity,2026-04-18T23:13:00.000Z,2026-05-09T23:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0074,ethan.test.0074@example.com,Ethan,Test,+12025550174,Orlando,google_ads,maintenance,customer,2026-04-17T12:34:00.000Z,2026-04-19T12:34:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0075,ethan.example.0075@example.com,Ethan,Example,+12025550175,Fort Lauderdale,website,maintenance,opportunity,2026-04-02T17:26:00.000Z,2026-05-07T17:26:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0076,sophia.sample.0076@example.com,Sophia,Sample,+12025550176,West Palm Beach,google_ads,repair,lead,2026-04-06T14:05:00.000Z,2026-04-07T14:05:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0077,ethan.sample.0077@example.com,Ethan,Sample,+12025550177,Tampa,other,repair,customer,2026-04-29T21:56:00.000Z,2026-05-11T21:56:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0078,grace.example.0078@example.com,Grace,Example,+12025550178,Miami,website,maintenance,customer,2026-04-15T19:26:00.000Z,2026-05-05T19:26:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0079,mason.example.0079@example.com,Mason,Example,+12025550179,Miami,google_ads,maintenance,lead,2026-04-09T20:25:00.000Z,2026-04-10T20:25:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0080,emma.placeholder.0080@example.com,Emma,Placeholder,+12025550180,Orlando,website,maintenance,opportunity,2026-04-14T14:45:00.000Z,2026-05-10T14:45:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0081,mia.sample.0081@example.com,Mia,Sample,+12025550181,Orlando,website,repair,opportunity,2026-04-29T20:00:00.000Z,2026-05-13T20:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0082,james.placeholder.0082@example.com,James,Placeholder,+12025550182,Fort Lauderdale,website,installation,opportunity,2026-04-03T21:10:00.000Z,2026-04-18T21:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0083,sofia.sample.0083@example.com,Sofia,Sample,+12025550183,Jacksonville,social_media,maintenance,lead,2026-04-09T17:59:00.000Z,2026-04-09T17:59:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0084,noah.sample.0084@example.com,Noah,Sample,+12025550184,Miami,google_ads,maintenance,lead,2026-04-06T15:02:00.000Z,2026-04-07T15:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0085,olivia.demo.0085@example.com,Olivia,Demo,+12025550185,Miami,google_ads,maintenance,customer,2026-04-13T15:46:00.000Z,2026-05-08T15:46:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0086,james.test.0086@example.com,James,Test,+12025550186,Orlando,website,installation,opportunity,2026-04-28T23:41:00.000Z,2026-05-23T23:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0087,olivia.placeholder.0087@example.com,Olivia,Placeholder,+12025550187,Tampa,website,repair,opportunity,2026-04-05T15:19:00.000Z,2026-04-11T15:19:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0088,ethan.example.0088@example.com,Ethan,Example,+12025550188,Fort Lauderdale,website,installation,opportunity,2026-04-01T23:11:00.000Z,2026-04-16T23:11:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0089,camila.sample.0089@example.com,Camila,Sample,+12025550189,Orlando,referral,repair,customer,2026-04-28T23:48:00.000Z,2026-05-22T23:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0090,diego.demo.0090@example.com,Diego,Demo,+12025550190,Fort Lauderdale,website,maintenance,lead,2026-04-12T21:03:00.000Z,2026-04-14T21:03:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0091,daniel.test.0091@example.com,Daniel,Test,+12025550191,Jacksonville,social_media,quote,customer,2026-04-03T21:03:00.000Z,2026-05-06T21:03:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0092,amelia.demo.0092@example.com,Amelia,Demo,+12025550192,Miami,social_media,inspection,customer,2026-04-15T13:47:00.000Z,2026-04-21T13:47:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0093,chloe.demo.0093@example.com,Chloe,Demo,+12025550193,Orlando,website,installation,customer,2026-04-29T20:43:00.000Z,2026-05-29T20:43:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0094,isabella.demo.0094@example.com,Isabella,Demo,+12025550194,Miami,social_media,repair,customer,2026-04-19T13:41:00.000Z,2026-04-23T13:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0095,ava.test.0095@example.com,Ava,Test,+12025550195,Orlando,social_media,maintenance,customer,2026-04-27T19:12:00.000Z,2026-05-22T19:12:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0096,olivia.example.0096@example.com,Olivia,Example,+12025550196,Orlando,referral,repair,opportunity,2026-05-23T19:35:00.000Z,2026-06-08T19:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0097,henry.demo.0097@example.com,Henry,Demo,+12025550197,Orlando,website,maintenance,opportunity,2026-05-27T12:48:00.000Z,2026-06-25T12:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0098,ella.sample.0098@example.com,Ella,Sample,+12025550198,Miami,referral,repair,opportunity,2026-05-30T13:37:00.000Z,2026-06-23T13:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0099,grace.placeholder.0099@example.com,Grace,Placeholder,+12025550199,Jacksonville,social_media,quote,opportunity,2026-05-21T21:29:00.000Z,2026-06-19T21:29:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0100,ethan.example.0100@example.com,Ethan,Example,+12025550100,Jacksonville,website,maintenance,customer,2026-05-02T21:33:00.000Z,2026-05-29T21:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0101,harper.placeholder.0101@example.com,Harper,Placeholder,+12025550101,Orlando,website,repair,customer,2026-05-25T16:00:00.000Z,2026-05-28T16:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0102,daniel.demo.0102@example.com,Daniel,Demo,+12025550102,Orlando,referral,installation,opportunity,2026-05-20T20:27:00.000Z,2026-06-21T20:27:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0103,mason.demo.0103@example.com,Mason,Demo,+12025550103,West Palm Beach,google_ads,maintenance,lead,2026-05-17T22:16:00.000Z,2026-05-17T22:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0104,daniel.sample.0104@example.com,Daniel,Sample,+12025550104,Tampa,website,quote,customer,2026-05-29T19:21:00.000Z,2026-06-25T19:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0105,james.test.0105@example.com,James,Test,+12025550105,Tampa,website,installation,opportunity,2026-05-24T14:26:00.000Z,2026-06-26T14:26:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0106,amelia.test.0106@example.com,Amelia,Test,+12025550106,Orlando,website,inspection,customer,2026-05-09T13:14:00.000Z,2026-05-28T13:14:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0107,james.example.0107@example.com,James,Example,+12025550107,Miami,google_ads,installation,opportunity,2026-05-30T16:53:00.000Z,2026-06-21T16:53:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0108,daniel.test.0108@example.com,Daniel,Test,+12025550108,West Palm Beach,google_ads,repair,customer,2026-05-29T17:26:00.000Z,2026-06-09T17:26:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0109,amelia.example.0109@example.com,Amelia,Example,+12025550109,Orlando,social_media,installation,customer,2026-05-10T15:00:00.000Z,2026-05-30T15:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0110,henry.sample.0110@example.com,Henry,Sample,+12025550110,Tampa,referral,installation,customer,2026-05-03T23:02:00.000Z,2026-05-17T23:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0111,isabella.placeholder.0111@example.com,Isabella,Placeholder,+12025550111,Jacksonville,website,maintenance,lead,2026-05-24T22:40:00.000Z,2026-05-25T22:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0112,david.demo.0112@example.com,David,Demo,+12025550112,Orlando,other,installation,opportunity,2026-05-24T12:22:00.000Z,2026-06-24T12:22:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0113,diego.demo.0113@example.com,Diego,Demo,+12025550113,Jacksonville,google_ads,installation,lead,2026-05-01T15:21:00.000Z,2026-05-02T15:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0114,david.example.0114@example.com,David,Example,+12025550114,Tampa,referral,repair,customer,2026-05-22T23:52:00.000Z,2026-05-27T23:52:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0115,valentina.example.0115@example.com,Valentina,Example,+12025550115,Tampa,website,maintenance,opportunity,2026-05-17T19:33:00.000Z,2026-06-04T19:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0116,diego.demo.0116@example.com,Diego,Demo,+12025550116,Tampa,website,installation,lead,2026-05-15T19:25:00.000Z,2026-05-17T19:25:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0117,noah.placeholder.0117@example.com,Noah,Placeholder,+12025550117,Miami,google_ads,repair,customer,2026-05-12T21:00:00.000Z,2026-06-14T21:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0118,ella.sample.0118@example.com,Ella,Sample,+12025550118,Miami,social_media,maintenance,lead,2026-05-14T15:39:00.000Z,2026-05-15T15:39:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0119,liam.placeholder.0119@example.com,Liam,Placeholder,+12025550119,Jacksonville,referral,maintenance,lead,2026-05-12T17:20:00.000Z,2026-05-13T17:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0120,lucas.placeholder.0120@example.com,Lucas,Placeholder,+12025550120,Miami,website,maintenance,customer,2026-05-26T13:54:00.000Z,2026-05-28T13:54:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0121,henry.test.0121@example.com,Henry,Test,+12025550121,Jacksonville,google_ads,repair,opportunity,2026-05-01T23:29:00.000Z,2026-05-19T23:29:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0122,ethan.sample.0122@example.com,Ethan,Sample,+12025550122,Fort Lauderdale,google_ads,inspection,customer,2026-05-28T14:35:00.000Z,2026-06-23T14:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0123,ella.demo.0123@example.com,Ella,Demo,+12025550123,Tampa,website,maintenance,customer,2026-05-06T18:37:00.000Z,2026-05-12T18:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0124,emma.test.0124@example.com,Emma,Test,+12025550124,Orlando,google_ads,installation,lead,2026-05-23T13:34:00.000Z,2026-05-25T13:34:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0125,liam.example.0125@example.com,Liam,Example,+12025550125,Tampa,website,inspection,lead,2026-05-06T23:02:00.000Z,2026-05-07T23:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0126,lucas.example.0126@example.com,Lucas,Example,+12025550126,Fort Lauderdale,google_ads,maintenance,customer,2026-05-06T23:41:00.000Z,2026-05-30T23:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0127,david.sample.0127@example.com,David,Sample,+12025550127,Miami,google_ads,repair,lead,2026-06-18T15:07:00.000Z,2026-06-18T15:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0128,mateo.demo.0128@example.com,Mateo,Demo,+12025550128,Miami,website,repair,opportunity,2026-06-10T14:07:00.000Z,2026-07-14T14:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0129,grace.placeholder.0129@example.com,Grace,Placeholder,+12025550129,Orlando,other,installation,opportunity,2026-06-23T18:41:00.000Z,2026-07-16T18:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0130,olivia.test.0130@example.com,Olivia,Test,+12025550130,Tampa,google_ads,inspection,lead,2026-06-14T19:24:00.000Z,2026-06-16T19:24:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0131,samuel.demo.0131@example.com,Samuel,Demo,+12025550131,Miami,google_ads,repair,customer,2026-06-13T15:30:00.000Z,2026-06-29T15:30:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0132,lily.placeholder.0132@example.com,Lily,Placeholder,+12025550132,West Palm Beach,website,installation,opportunity,2026-06-17T14:00:00.000Z,2026-07-04T14:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0133,harper.test.0133@example.com,Harper,Test,+12025550133,Miami,google_ads,maintenance,customer,2026-06-26T14:22:00.000Z,2026-07-18T14:22:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0134,mia.placeholder.0134@example.com,Mia,Placeholder,+12025550134,Fort Lauderdale,website,maintenance,customer,2026-06-21T15:46:00.000Z,2026-07-09T15:46:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0135,david.demo.0135@example.com,David,Demo,+12025550135,Miami,referral,installation,customer,2026-06-22T12:15:00.000Z,2026-07-07T12:15:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0136,isabella.test.0136@example.com,Isabella,Test,+12025550136,Orlando,website,repair,customer,2026-06-20T23:56:00.000Z,2026-07-16T23:56:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0137,mateo.sample.0137@example.com,Mateo,Sample,+12025550137,Orlando,website,repair,customer,2026-06-08T15:23:00.000Z,2026-06-27T15:23:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0138,david.sample.0138@example.com,David,Sample,+12025550138,Fort Lauderdale,website,installation,opportunity,2026-06-08T13:40:00.000Z,2026-06-22T13:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0139,lily.demo.0139@example.com,Lily,Demo,+12025550139,Miami,google_ads,repair,opportunity,2026-06-03T15:48:00.000Z,2026-06-27T15:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0140,chloe.example.0140@example.com,Chloe,Example,+12025550140,Tampa,google_ads,maintenance,customer,2026-06-09T12:40:00.000Z,2026-07-09T12:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0141,sofia.placeholder.0141@example.com,Sofia,Placeholder,+12025550141,Tampa,website,inspection,opportunity,2026-06-19T14:12:00.000Z,2026-07-19T14:12:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0142,camila.placeholder.0142@example.com,Camila,Placeholder,+12025550142,Tampa,google_ads,repair,customer,2026-06-19T16:10:00.000Z,2026-07-23T16:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0143,ethan.sample.0143@example.com,Ethan,Sample,+12025550143,Orlando,social_media,maintenance,customer,2026-06-13T12:11:00.000Z,2026-07-17T12:11:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0144,chloe.demo.0144@example.com,Chloe,Demo,+12025550144,Jacksonville,google_ads,maintenance,opportunity,2026-06-30T16:33:00.000Z,2026-07-22T16:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0145,valentina.demo.0145@example.com,Valentina,Demo,+12025550145,Orlando,website,inspection,customer,2026-06-10T18:55:00.000Z,2026-07-13T18:55:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0146,isabella.example.0146@example.com,Isabella,Example,+12025550146,Jacksonville,social_media,quote,customer,2026-06-28T15:06:00.000Z,2026-07-06T15:06:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0147,olivia.placeholder.0147@example.com,Olivia,Placeholder,+12025550147,Jacksonville,website,repair,customer,2026-06-05T19:20:00.000Z,2026-07-08T19:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0148,emma.placeholder.0148@example.com,Emma,Placeholder,+12025550148,Orlando,website,installation,opportunity,2026-06-05T20:58:00.000Z,2026-06-14T20:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0149,mia.example.0149@example.com,Mia,Example,+12025550149,Miami,social_media,inspection,customer,2026-06-24T21:35:00.000Z,2026-07-23T21:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0150,olivia.placeholder.0150@example.com,Olivia,Placeholder,+12025550150,Orlando,social_media,repair,lead,2026-06-13T18:11:00.000Z,2026-06-15T18:11:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0151,sophia.example.0151@example.com,Sophia,Example,+12025550151,Orlando,website,maintenance,lead,2026-06-19T16:16:00.000Z,2026-06-19T16:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0152,amelia.example.0152@example.com,Amelia,Example,+12025550152,Fort Lauderdale,google_ads,repair,customer,2026-06-01T17:32:00.000Z,2026-06-19T17:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0153,mason.test.0153@example.com,Mason,Test,+12025550153,Orlando,other,repair,opportunity,2026-06-12T20:00:00.000Z,2026-06-20T20:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0154,olivia.sample.0154@example.com,Olivia,Sample,+12025550154,Fort Lauderdale,social_media,maintenance,lead,2026-06-07T14:02:00.000Z,2026-06-08T14:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0155,liam.sample.0155@example.com,Liam,Sample,+12025550155,Tampa,google_ads,inspection,lead,2026-06-21T22:07:00.000Z,2026-06-23T22:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0156,sophia.demo.0156@example.com,Sophia,Demo,+12025550156,Jacksonville,website,inspection,opportunity,2026-06-07T15:52:00.000Z,2026-07-10T15:52:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0157,valentina.demo.0157@example.com,Valentina,Demo,+12025550157,Jacksonville,google_ads,installation,customer,2026-06-11T16:13:00.000Z,2026-07-15T16:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0158,noah.placeholder.0158@example.com,Noah,Placeholder,+12025550158,Miami,website,repair,customer,2026-06-02T20:10:00.000Z,2026-06-21T20:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0159,liam.example.0159@example.com,Liam,Example,+12025550159,Tampa,social_media,maintenance,customer,2026-06-02T16:17:00.000Z,2026-06-14T16:17:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0160,valentina.demo.0160@example.com,Valentina,Demo,+12025550160,Miami,website,quote,opportunity,2026-06-12T13:06:00.000Z,2026-06-20T13:06:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0161,noah.sample.0161@example.com,Noah,Sample,+12025550161,Tampa,google_ads,repair,customer,2026-06-30T17:08:00.000Z,2026-07-04T17:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0162,logan.example.0162@example.com,Logan,Example,+12025550162,Jacksonville,google_ads,repair,customer,2026-06-12T14:13:00.000Z,2026-07-16T14:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0163,emma.placeholder.0163@example.com,Emma,Placeholder,+12025550163,Fort Lauderdale,social_media,maintenance,customer,2026-06-07T16:43:00.000Z,2026-06-30T16:43:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0164,mason.test.0164@example.com,Mason,Test,+12025550164,Orlando,website,quote,opportunity,2026-06-06T13:32:00.000Z,2026-07-03T13:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0165,ava.test.0165@example.com,Ava,Test,+12025550165,Orlando,website,repair,opportunity,2026-07-29T17:01:00.000Z,2026-08-18T17:01:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0166,carlos.sample.0166@example.com,Carlos,Sample,+12025550166,Fort Lauderdale,google_ads,repair,opportunity,2026-07-18T13:40:00.000Z,2026-07-24T13:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0167,amelia.sample.0167@example.com,Amelia,Sample,+12025550167,West Palm Beach,website,maintenance,customer,2026-07-09T17:37:00.000Z,2026-08-10T17:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0168,logan.example.0168@example.com,Logan,Example,+12025550168,Miami,other,maintenance,customer,2026-07-03T12:02:00.000Z,2026-07-08T12:02:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0169,lucas.sample.0169@example.com,Lucas,Sample,+12025550169,Orlando,website,repair,lead,2026-07-13T22:03:00.000Z,2026-07-15T22:03:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0170,lily.demo.0170@example.com,Lily,Demo,+12025550170,Miami,social_media,repair,lead,2026-07-02T22:45:00.000Z,2026-07-03T22:45:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0171,sophia.test.0171@example.com,Sophia,Test,+12025550171,Miami,google_ads,repair,opportunity,2026-07-28T19:31:00.000Z,2026-08-11T19:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0172,diego.test.0172@example.com,Diego,Test,+12025550172,Miami,website,maintenance,lead,2026-07-11T20:46:00.000Z,2026-07-12T20:46:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0173,logan.demo.0173@example.com,Logan,Demo,+12025550173,Jacksonville,google_ads,repair,customer,2026-07-06T21:00:00.000Z,2026-07-12T21:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0174,camila.test.0174@example.com,Camila,Test,+12025550174,Tampa,referral,inspection,customer,2026-07-29T23:36:00.000Z,2026-08-21T23:36:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0175,henry.example.0175@example.com,Henry,Example,+12025550175,Orlando,website,maintenance,opportunity,2026-07-02T16:53:00.000Z,2026-07-05T16:53:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0176,sophia.test.0176@example.com,Sophia,Test,+12025550176,Orlando,website,inspection,customer,2026-07-13T18:30:00.000Z,2026-08-01T18:30:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0177,carlos.test.0177@example.com,Carlos,Test,+12025550177,Fort Lauderdale,social_media,maintenance,customer,2026-07-28T18:57:00.000Z,2026-08-04T18:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0178,sophia.example.0178@example.com,Sophia,Example,+12025550178,Miami,google_ads,installation,lead,2026-07-10T15:57:00.000Z,2026-07-11T15:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0179,liam.sample.0179@example.com,Liam,Sample,+12025550179,Tampa,website,quote,opportunity,2026-07-14T19:16:00.000Z,2026-08-05T19:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0180,emma.test.0180@example.com,Emma,Test,+12025550180,Orlando,google_ads,repair,customer,2026-07-27T16:41:00.000Z,2026-07-29T16:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0181,david.example.0181@example.com,David,Example,+12025550181,Orlando,website,inspection,opportunity,2026-07-02T20:04:00.000Z,2026-07-11T20:04:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0182,emma.test.0182@example.com,Emma,Test,+12025550182,Jacksonville,google_ads,repair,customer,2026-07-17T12:41:00.000Z,2026-07-22T12:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0183,henry.placeholder.0183@example.com,Henry,Placeholder,+12025550183,Miami,google_ads,repair,lead,2026-07-11T15:55:00.000Z,2026-07-13T15:55:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0184,daniel.demo.0184@example.com,Daniel,Demo,+12025550184,Orlando,google_ads,repair,opportunity,2026-07-09T12:10:00.000Z,2026-07-26T12:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0185,valentina.sample.0185@example.com,Valentina,Sample,+12025550185,Miami,website,installation,opportunity,2026-07-02T12:20:00.000Z,2026-07-15T12:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0186,sophia.demo.0186@example.com,Sophia,Demo,+12025550186,Jacksonville,referral,maintenance,opportunity,2026-07-22T21:30:00.000Z,2026-07-26T21:30:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0187,grace.placeholder.0187@example.com,Grace,Placeholder,+12025550187,Fort Lauderdale,website,installation,opportunity,2026-07-15T22:23:00.000Z,2026-08-16T22:23:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0188,mia.test.0188@example.com,Mia,Test,+12025550188,Miami,referral,repair,opportunity,2026-07-22T13:34:00.000Z,2026-08-10T13:34:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0189,grace.placeholder.0189@example.com,Grace,Placeholder,+12025550189,Orlando,website,inspection,customer,2026-07-02T21:34:00.000Z,2026-07-16T21:34:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0190,ethan.test.0190@example.com,Ethan,Test,+12025550190,Tampa,referral,inspection,customer,2026-07-06T20:40:00.000Z,2026-08-07T20:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0191,mateo.test.0191@example.com,Mateo,Test,+12025550191,Miami,website,repair,customer,2026-07-16T17:09:00.000Z,2026-08-01T17:09:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0192,gabriel.example.0192@example.com,Gabriel,Example,+12025550192,Tampa,referral,repair,lead,2026-07-10T22:16:00.000Z,2026-07-12T22:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0193,olivia.sample.0193@example.com,Olivia,Sample,+12025550193,Tampa,google_ads,maintenance,opportunity,2026-07-03T23:10:00.000Z,2026-07-12T23:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0194,james.example.0194@example.com,James,Example,+12025550194,Tampa,website,maintenance,opportunity,2026-07-30T21:25:00.000Z,2026-08-23T21:25:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0195,mateo.test.0195@example.com,Mateo,Test,+12025550195,Miami,google_ads,quote,opportunity,2026-07-15T13:12:00.000Z,2026-08-09T13:12:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0196,ethan.test.0196@example.com,Ethan,Test,+12025550196,Tampa,google_ads,installation,opportunity,2026-07-04T14:40:00.000Z,2026-07-27T14:40:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0197,logan.placeholder.0197@example.com,Logan,Placeholder,+12025550197,Tampa,website,installation,opportunity,2026-07-18T22:24:00.000Z,2026-08-16T22:24:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0198,valentina.demo.0198@example.com,Valentina,Demo,+12025550198,Jacksonville,social_media,repair,lead,2026-07-30T18:56:00.000Z,2026-07-30T18:56:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0199,amelia.test.0199@example.com,Amelia,Test,+12025550199,Miami,google_ads,maintenance,lead,2026-07-02T22:42:00.000Z,2026-07-03T22:42:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0200,amelia.example.0200@example.com,Amelia,Example,+12025550100,Tampa,website,repair,customer,2026-07-23T17:18:00.000Z,2026-08-13T17:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0201,amelia.test.0201@example.com,Amelia,Test,+12025550101,Orlando,website,repair,opportunity,2026-07-22T20:23:00.000Z,2026-08-11T20:23:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0202,emma.example.0202@example.com,Emma,Example,+12025550102,Miami,referral,inspection,opportunity,2026-07-03T22:28:00.000Z,2026-07-06T22:28:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0203,amelia.test.0203@example.com,Amelia,Test,+12025550103,Fort Lauderdale,google_ads,inspection,opportunity,2026-07-28T16:19:00.000Z,2026-08-20T16:19:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0204,emma.sample.0204@example.com,Emma,Sample,+12025550104,Tampa,google_ads,maintenance,opportunity,2026-07-09T22:33:00.000Z,2026-07-13T22:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0205,camila.demo.0205@example.com,Camila,Demo,+12025550105,Jacksonville,website,maintenance,opportunity,2026-07-21T12:32:00.000Z,2026-08-01T12:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0206,camila.demo.0206@example.com,Camila,Demo,+12025550106,Orlando,website,inspection,customer,2026-07-29T16:18:00.000Z,2026-08-20T16:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0207,valentina.example.0207@example.com,Valentina,Example,+12025550107,West Palm Beach,google_ads,maintenance,lead,2026-08-15T18:51:00.000Z,2026-08-15T18:51:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0208,amelia.example.0208@example.com,Amelia,Example,+12025550108,Fort Lauderdale,website,repair,opportunity,2026-08-12T12:20:00.000Z,2026-09-03T12:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0209,mia.sample.0209@example.com,Mia,Sample,+12025550109,West Palm Beach,website,maintenance,customer,2026-08-13T19:19:00.000Z,2026-08-15T19:19:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0210,olivia.placeholder.0210@example.com,Olivia,Placeholder,+12025550110,Miami,website,installation,opportunity,2026-08-31T12:00:00.000Z,2026-09-01T12:00:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0211,chloe.demo.0211@example.com,Chloe,Demo,+12025550111,Fort Lauderdale,website,repair,opportunity,2026-08-06T23:44:00.000Z,2026-08-30T23:44:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0212,lily.placeholder.0212@example.com,Lily,Placeholder,+12025550112,Jacksonville,social_media,repair,customer,2026-08-24T21:35:00.000Z,2026-08-30T21:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0213,carlos.example.0213@example.com,Carlos,Example,+12025550113,Orlando,website,inspection,lead,2026-08-15T15:47:00.000Z,2026-08-15T15:47:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0214,isabella.placeholder.0214@example.com,Isabella,Placeholder,+12025550114,Miami,google_ads,maintenance,lead,2026-08-10T18:18:00.000Z,2026-08-12T18:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0215,mason.test.0215@example.com,Mason,Test,+12025550115,Orlando,website,repair,customer,2026-08-03T13:41:00.000Z,2026-08-22T13:41:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0216,daniel.test.0216@example.com,Daniel,Test,+12025550116,Miami,website,repair,opportunity,2026-08-22T21:10:00.000Z,2026-09-23T21:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0217,mia.example.0217@example.com,Mia,Example,+12025550117,Tampa,google_ads,maintenance,customer,2026-08-10T23:18:00.000Z,2026-08-21T23:18:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0218,noah.test.0218@example.com,Noah,Test,+12025550118,Orlando,website,quote,customer,2026-08-16T23:42:00.000Z,2026-08-26T23:42:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0219,gabriel.example.0219@example.com,Gabriel,Example,+12025550119,West Palm Beach,website,maintenance,opportunity,2026-08-10T20:36:00.000Z,2026-08-19T20:36:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0220,sofia.sample.0220@example.com,Sofia,Sample,+12025550120,Tampa,website,repair,customer,2026-08-18T23:21:00.000Z,2026-09-22T23:21:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0221,diego.sample.0221@example.com,Diego,Sample,+12025550121,Miami,google_ads,repair,opportunity,2026-08-10T23:17:00.000Z,2026-08-28T23:17:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0222,mason.placeholder.0222@example.com,Mason,Placeholder,+12025550122,Orlando,website,repair,opportunity,2026-08-18T21:49:00.000Z,2026-09-10T21:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0223,mia.test.0223@example.com,Mia,Test,+12025550123,Jacksonville,social_media,installation,customer,2026-08-19T13:19:00.000Z,2026-09-04T13:19:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0224,james.example.0224@example.com,James,Example,+12025550124,Miami,social_media,maintenance,customer,2026-08-03T12:14:00.000Z,2026-08-15T12:14:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0225,liam.demo.0225@example.com,Liam,Demo,+12025550125,Orlando,website,repair,lead,2026-08-30T20:22:00.000Z,2026-09-01T20:22:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0226,carlos.example.0226@example.com,Carlos,Example,+12025550126,Orlando,social_media,installation,opportunity,2026-08-30T23:57:00.000Z,2026-09-15T23:57:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0227,mia.example.0227@example.com,Mia,Example,+12025550127,Tampa,other,quote,opportunity,2026-08-18T13:13:00.000Z,2026-09-13T13:13:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0228,lucas.sample.0228@example.com,Lucas,Sample,+12025550128,Jacksonville,website,inspection,lead,2026-08-20T18:49:00.000Z,2026-08-22T18:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0229,ethan.sample.0229@example.com,Ethan,Sample,+12025550129,Miami,social_media,repair,customer,2026-08-02T21:39:00.000Z,2026-08-28T21:39:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0230,sophia.test.0230@example.com,Sophia,Test,+12025550130,Jacksonville,referral,repair,customer,2026-08-13T15:55:00.000Z,2026-09-13T15:55:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0231,ella.test.0231@example.com,Ella,Test,+12025550131,Orlando,social_media,maintenance,customer,2026-08-02T13:03:00.000Z,2026-08-14T13:03:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0232,henry.sample.0232@example.com,Henry,Sample,+12025550132,Orlando,other,repair,opportunity,2026-08-27T17:52:00.000Z,2026-09-01T17:52:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0233,liam.demo.0233@example.com,Liam,Demo,+12025550133,Orlando,website,installation,opportunity,2026-08-12T20:51:00.000Z,2026-09-13T20:51:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0234,sofia.placeholder.0234@example.com,Sofia,Placeholder,+12025550134,Orlando,website,maintenance,customer,2026-08-24T18:35:00.000Z,2026-09-06T18:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0235,mia.test.0235@example.com,Mia,Test,+12025550135,Tampa,website,repair,customer,2026-08-16T13:22:00.000Z,2026-09-01T13:22:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0236,ethan.sample.0236@example.com,Ethan,Sample,+12025550136,Orlando,website,repair,customer,2026-08-19T20:47:00.000Z,2026-09-01T20:47:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0237,camila.sample.0237@example.com,Camila,Sample,+12025550137,Jacksonville,other,inspection,opportunity,2026-08-09T15:53:00.000Z,2026-09-02T15:53:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0238,amelia.placeholder.0238@example.com,Amelia,Placeholder,+12025550138,Fort Lauderdale,website,installation,customer,2026-08-10T14:59:00.000Z,2026-08-17T14:59:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0239,olivia.sample.0239@example.com,Olivia,Sample,+12025550139,Miami,website,repair,opportunity,2026-08-03T23:33:00.000Z,2026-08-08T23:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0240,mateo.demo.0240@example.com,Mateo,Demo,+12025550140,Miami,referral,maintenance,customer,2026-08-30T17:52:00.000Z,2026-09-18T17:52:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0241,grace.example.0241@example.com,Grace,Example,+12025550141,Orlando,google_ads,repair,customer,2026-08-13T12:53:00.000Z,2026-09-03T12:53:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0242,lily.placeholder.0242@example.com,Lily,Placeholder,+12025550142,Tampa,other,repair,customer,2026-08-23T17:31:00.000Z,2026-08-26T17:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0243,emma.test.0243@example.com,Emma,Test,+12025550143,Tampa,referral,maintenance,customer,2026-08-20T13:10:00.000Z,2026-09-07T13:10:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0244,carlos.test.0244@example.com,Carlos,Test,+12025550144,Tampa,website,repair,opportunity,2026-08-04T23:50:00.000Z,2026-09-02T23:50:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0245,sophia.placeholder.0245@example.com,Sophia,Placeholder,+12025550145,West Palm Beach,website,maintenance,opportunity,2026-08-07T23:43:00.000Z,2026-08-19T23:43:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0246,david.sample.0246@example.com,David,Sample,+12025550146,Tampa,website,repair,opportunity,2026-08-03T20:14:00.000Z,2026-09-02T20:14:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0247,carlos.example.0247@example.com,Carlos,Example,+12025550147,Miami,website,quote,opportunity,2026-09-25T23:35:00.000Z,2026-10-06T23:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0248,harper.placeholder.0248@example.com,Harper,Placeholder,+12025550148,Miami,referral,inspection,opportunity,2026-09-04T20:35:00.000Z,2026-10-05T20:35:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0249,liam.placeholder.0249@example.com,Liam,Placeholder,+12025550149,Fort Lauderdale,website,maintenance,opportunity,2026-09-05T21:33:00.000Z,2026-09-27T21:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0250,noah.demo.0250@example.com,Noah,Demo,+12025550150,Fort Lauderdale,google_ads,inspection,opportunity,2026-09-09T23:49:00.000Z,2026-09-21T23:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0251,ava.sample.0251@example.com,Ava,Sample,+12025550151,Jacksonville,other,installation,opportunity,2026-09-30T12:12:00.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0252,ella.demo.0252@example.com,Ella,Demo,+12025550152,Miami,google_ads,installation,opportunity,2026-09-24T14:43:00.000Z,2026-10-17T14:43:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0253,liam.demo.0253@example.com,Liam,Demo,+12025550153,Tampa,website,quote,customer,2026-09-08T17:23:00.000Z,2026-09-14T17:23:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0254,logan.example.0254@example.com,Logan,Example,+12025550154,Tampa,website,repair,customer,2026-09-14T21:03:00.000Z,2026-10-10T21:03:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0255,lily.example.0255@example.com,Lily,Example,+12025550155,Tampa,website,maintenance,customer,2026-09-09T22:47:00.000Z,2026-10-11T22:47:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0256,henry.placeholder.0256@example.com,Henry,Placeholder,+12025550156,Jacksonville,website,installation,opportunity,2026-09-10T13:33:00.000Z,2026-09-16T13:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0257,noah.test.0257@example.com,Noah,Test,+12025550157,Orlando,referral,maintenance,opportunity,2026-09-13T14:44:00.000Z,2026-10-14T14:44:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0258,ava.sample.0258@example.com,Ava,Sample,+12025550158,Miami,google_ads,maintenance,opportunity,2026-09-17T19:58:00.000Z,2026-09-19T19:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0259,olivia.sample.0259@example.com,Olivia,Sample,+12025550159,Jacksonville,website,repair,opportunity,2026-09-08T18:01:00.000Z,2026-09-25T18:01:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0260,ethan.test.0260@example.com,Ethan,Test,+12025550160,Miami,website,maintenance,customer,2026-09-05T12:48:00.000Z,2026-10-09T12:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0261,noah.demo.0261@example.com,Noah,Demo,+12025550161,Miami,referral,maintenance,customer,2026-09-03T14:16:00.000Z,2026-10-04T14:16:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0262,olivia.sample.0262@example.com,Olivia,Sample,+12025550162,Jacksonville,website,installation,customer,2026-09-30T21:32:00.000Z,2026-10-23T21:32:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0263,logan.example.0263@example.com,Logan,Example,+12025550163,Miami,website,repair,opportunity,2026-09-11T23:51:00.000Z,2026-09-24T23:51:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0264,liam.demo.0264@example.com,Liam,Demo,+12025550164,West Palm Beach,referral,installation,opportunity,2026-09-26T18:42:00.000Z,2026-10-05T18:42:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0265,liam.test.0265@example.com,Liam,Test,+12025550165,West Palm Beach,google_ads,maintenance,opportunity,2026-09-22T18:38:00.000Z,2026-09-25T18:38:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0266,emma.sample.0266@example.com,Emma,Sample,+12025550166,Orlando,referral,repair,customer,2026-09-10T23:46:00.000Z,2026-09-22T23:46:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0267,gabriel.example.0267@example.com,Gabriel,Example,+12025550167,Miami,google_ads,installation,opportunity,2026-09-24T19:04:00.000Z,2026-09-25T19:04:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0268,ethan.placeholder.0268@example.com,Ethan,Placeholder,+12025550168,Jacksonville,google_ads,inspection,lead,2026-09-04T16:49:00.000Z,2026-09-04T16:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0269,ella.test.0269@example.com,Ella,Test,+12025550169,Orlando,google_ads,maintenance,customer,2026-09-12T19:36:00.000Z,2026-09-16T19:36:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0270,david.placeholder.0270@example.com,David,Placeholder,+12025550170,Tampa,social_media,repair,lead,2026-09-04T13:14:00.000Z,2026-09-05T13:14:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0271,logan.demo.0271@example.com,Logan,Demo,+12025550171,Jacksonville,website,inspection,opportunity,2026-09-30T17:07:00.000Z,2026-10-13T17:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0272,daniel.demo.0272@example.com,Daniel,Demo,+12025550172,Miami,website,maintenance,opportunity,2026-09-02T20:58:00.000Z,2026-10-04T20:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0273,daniel.demo.0273@example.com,Daniel,Demo,+12025550173,Tampa,website,maintenance,customer,2026-09-15T15:31:00.000Z,2026-10-12T15:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0274,henry.test.0274@example.com,Henry,Test,+12025550174,Orlando,social_media,installation,opportunity,2026-09-01T12:49:00.000Z,2026-10-04T12:49:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0275,mateo.example.0275@example.com,Mateo,Example,+12025550175,Miami,website,installation,opportunity,2026-09-18T21:23:00.000Z,2026-09-30T21:23:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0276,daniel.example.0276@example.com,Daniel,Example,+12025550176,Miami,google_ads,installation,opportunity,2026-09-14T18:58:00.000Z,2026-09-24T18:58:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0277,noah.example.0277@example.com,Noah,Example,+12025550177,Tampa,google_ads,repair,customer,2026-10-13T17:55:00.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0278,camila.example.0278@example.com,Camila,Example,+12025550178,Orlando,google_ads,maintenance,opportunity,2026-10-11T12:34:00.000Z,2026-10-26T12:34:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0279,sophia.placeholder.0279@example.com,Sophia,Placeholder,+12025550179,West Palm Beach,referral,repair,opportunity,2026-10-04T20:50:00.000Z,2026-10-10T20:50:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0280,daniel.example.0280@example.com,Daniel,Example,+12025550180,Jacksonville,social_media,maintenance,lead,2026-10-18T23:59:59.000Z,2026-10-20T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0281,carlos.test.0281@example.com,Carlos,Test,+12025550181,Tampa,website,installation,lead,2026-10-15T18:25:00.000Z,2026-10-17T18:25:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0282,ella.example.0282@example.com,Ella,Example,+12025550182,Tampa,google_ads,repair,opportunity,2026-10-13T17:07:00.000Z,2026-10-18T17:07:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0283,isabella.demo.0283@example.com,Isabella,Demo,+12025550183,Fort Lauderdale,google_ads,maintenance,opportunity,2026-10-12T12:33:00.000Z,2026-10-14T12:33:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0284,liam.demo.0284@example.com,Liam,Demo,+12025550184,Miami,google_ads,installation,opportunity,2026-10-05T15:37:00.000Z,2026-10-10T15:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0285,ava.demo.0285@example.com,Ava,Demo,+12025550185,Tampa,google_ads,installation,opportunity,2026-10-23T17:36:00.000Z,2026-10-27T17:36:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0286,ethan.example.0286@example.com,Ethan,Example,+12025550186,Miami,google_ads,repair,opportunity,2026-10-22T12:08:00.000Z,2026-10-25T12:08:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0287,amelia.sample.0287@example.com,Amelia,Sample,+12025550187,Tampa,website,maintenance,opportunity,2026-10-20T23:59:59.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0288,valentina.sample.0288@example.com,Valentina,Sample,+12025550188,Tampa,referral,quote,customer,2026-10-04T23:31:00.000Z,2026-10-26T23:31:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0289,isabella.placeholder.0289@example.com,Isabella,Placeholder,+12025550189,Jacksonville,website,maintenance,opportunity,2026-10-18T23:59:59.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0290,mateo.example.0290@example.com,Mateo,Example,+12025550190,Miami,website,maintenance,lead,2026-10-06T16:59:00.000Z,2026-10-07T16:59:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0291,mia.demo.0291@example.com,Mia,Demo,+12025550191,Orlando,google_ads,maintenance,opportunity,2026-10-04T15:53:00.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0292,chloe.placeholder.0292@example.com,Chloe,Placeholder,+12025550192,Tampa,social_media,quote,opportunity,2026-10-11T15:30:00.000Z,2026-10-17T15:30:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0293,olivia.placeholder.0293@example.com,Olivia,Placeholder,+12025550193,Miami,website,installation,opportunity,2026-10-01T23:20:00.000Z,2026-10-25T23:20:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0294,liam.sample.0294@example.com,Liam,Sample,+12025550194,Fort Lauderdale,google_ads,inspection,opportunity,2026-10-16T22:55:00.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0295,daniel.example.0295@example.com,Daniel,Example,+12025550195,West Palm Beach,social_media,installation,lead,2026-10-08T14:37:00.000Z,2026-10-10T14:37:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0296,amelia.demo.0296@example.com,Amelia,Demo,+12025550196,West Palm Beach,website,installation,lead,2026-10-08T23:59:59.000Z,2026-10-10T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0297,gabriel.test.0297@example.com,Gabriel,Test,+12025550197,Miami,google_ads,repair,opportunity,2026-10-19T23:48:00.000Z,2026-10-22T23:48:00.000Z,2026-10-30T12:00:00.000Z,seed,seed
+seed-c-0298,amelia.example.0298@example.com,Amelia,Example,+12025550198,Jacksonville,website,repair,opportunity,2026-10-17T20:57:00.000Z,2026-10-27T23:59:59.000Z,2026-10-30T12:00:00.000Z,seed,seed
