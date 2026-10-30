@@ -1,0 +1,1149 @@
+{
+  "name": "CRM Sync - HubSpot to Sheets + Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 4. Slack alerts (outbox)\nPending alerts are tracked in the sheet. A row is marked as notified **only after Slack confirms**; failures are logged and retried next run.",
+        "height": 640,
+        "width": 1160,
+        "color": 7
+      },
+      "id": "p2000000-0035-4000-8000-000000000035",
+      "name": "Sticky - Slack",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 3. Advance cursor + log\nOnly reached after both upserts succeed.",
+        "height": 280,
+        "width": 900,
+        "color": 6
+      },
+      "id": "p2000000-0034-4000-8000-000000000034",
+      "name": "Sticky - Cursor",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 2. Mirror to Google Sheets\nUpsert by HubSpot ID - the same record always updates the **same row**.\n⚠️ Keep the branch order top → bottom: contacts, deals, then the cursor.",
+        "height": 600,
+        "width": 1160,
+        "color": 4
+      },
+      "id": "p2000000-0033-4000-8000-000000000033",
+      "name": "Sticky - Mirror",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## HubSpot unavailable\nAfter 3 retries: log to **sync_log**, stop the run and **do not move the cursor** - the next run reads the same window again.",
+        "height": 300,
+        "width": 700,
+        "color": 3
+      },
+      "id": "p2000000-0032-4000-8000-000000000032",
+      "name": "Sticky - HubSpot Error",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 1. Read changes from HubSpot\nEvery 10 min: contacts and deals modified since the last sync (5 min overlap), stage labels and deal → contact links.",
+        "height": 600,
+        "width": 2060,
+        "color": 5
+      },
+      "id": "p2000000-0031-4000-8000-000000000031",
+      "name": "Sticky - Read",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "p2000000-0001-4000-8000-000000000001",
+      "name": "Every 10 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "sync_state",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "p2000000-0002-4000-8000-000000000002",
+      "name": "Read Sync State",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        0
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Decide which time window to read from HubSpot.\nconst row = $input.all().map((i) => i.json).find((r) => r.key === 'last_synced_at') || {};\nconst last = row.value ? String(row.value) : '';\nconst lastMs = last ? Date.parse(last) : NaN;\nconst OVERLAP_MS = 5 * 60 * 1000; // re-read 5 min to cover HubSpot search indexing delay\n\nreturn [{\n  json: {\n    run_started_at: new Date().toISOString(),\n    last_synced_at: last || null,\n    since_ms: Number.isNaN(lastMs) ? null : lastMs - OVERLAP_MS,\n    backfill: Number.isNaN(lastMs), // first run: copy everything, send no alerts\n  },\n}];"
+      },
+      "id": "p2000000-0003-4000-8000-000000000003",
+      "name": "Init Run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ filterGroups: $('Init Run').first().json.since_ms ? [{ filters: [{ propertyName: 'lastmodifieddate', operator: 'GTE', value: String($('Init Run').first().json.since_ms) }] }] : [], properties: ['email','firstname','lastname','phone','city','lead_source','service_type','lifecyclestage','createdate','lastmodifieddate'], sorts: [{ propertyName: 'lastmodifieddate', direction: 'ASCENDING' }], limit: 100 }) }}",
+        "options": {
+          "pagination": {
+            "paginationMode": "updateAParameterInEachRequest",
+            "parameters": {
+              "parameters": [
+                {
+                  "type": "body",
+                  "name": "after",
+                  "value": "={{ $response.body.paging?.next?.after }}"
+                }
+              ]
+            },
+            "paginationCompleteWhen": "other",
+            "completeExpression": "={{ !$response.body.paging?.next?.after }}",
+            "limitPagesFetched": true,
+            "maxRequests": 50
+          }
+        }
+      },
+      "id": "p2000000-0004-4000-8000-000000000004",
+      "name": "HubSpot - Search Contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/deals/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ filterGroups: $('Init Run').first().json.since_ms ? [{ filters: [{ propertyName: 'hs_lastmodifieddate', operator: 'GTE', value: String($('Init Run').first().json.since_ms) }] }] : [], properties: ['dealname','dealstage','pipeline','amount','createdate','hs_lastmodifieddate','hs_is_closed','hs_is_closed_won'], sorts: [{ propertyName: 'hs_lastmodifieddate', direction: 'ASCENDING' }], limit: 100 }) }}",
+        "options": {
+          "pagination": {
+            "paginationMode": "updateAParameterInEachRequest",
+            "parameters": {
+              "parameters": [
+                {
+                  "type": "body",
+                  "name": "after",
+                  "value": "={{ $response.body.paging?.next?.after }}"
+                }
+              ]
+            },
+            "paginationCompleteWhen": "other",
+            "completeExpression": "={{ !$response.body.paging?.next?.after }}",
+            "limitPagesFetched": true,
+            "maxRequests": 50
+          }
+        }
+      },
+      "id": "p2000000-0005-4000-8000-000000000005",
+      "name": "HubSpot - Search Deals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "executeOnce": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://api.hubapi.com/crm/v3/pipelines/deals",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "p2000000-0006-4000-8000-000000000006",
+      "name": "HubSpot - Deal Pipelines",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "executeOnce": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $('HubSpot - Search Deals').all().flatMap((i) => (i.json.results || []).map((d) => String(d.id)));\nreturn [{ json: { deal_ids: [...new Set(ids)] } }];"
+      },
+      "id": "p2000000-0007-4000-8000-000000000007",
+      "name": "Collect Deal IDs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "p2c00000-0001-4000-8000-000000000001",
+              "leftValue": "={{ $json.deal_ids.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "p2000000-0008-4000-8000-000000000008",
+      "name": "Any Deals Changed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v4/associations/deal/contact/batch/read",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ inputs: $json.deal_ids.map((id) => ({ id })) }) }}",
+        "options": {}
+      },
+      "id": "p2000000-0009-4000-8000-000000000009",
+      "name": "HubSpot - Deal Contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        -160
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turns the API error into a short, readable log line (no HTML bodies).\nconst e = $input.first().json.error || {};\nconst raw = String(e.message || e.description || e || 'unknown error');\nconst title = raw.match(/<title>([^<]*)<\\/title>/i);\nconst short = (title ? title[1] : raw.replace(/<[^>]*>/g, ' ')).replace(/\\s+/g, ' ').replace(/^\\d{3}\\s*-\\s*\"?/, '').trim();\nconst code = (raw.match(/^(\\d{3})/) || [])[1] || e.httpCode || '';\nreturn [{ json: {\n  run_at: new Date().toISOString(), object: 'hubspot', record_id: '', action: 'read', status: 'error',\n  message: ('HubSpot ' + (code ? code + ': ' : '') + short).slice(0, 160) + ' | cursor not moved, next run retries',\n} }];"
+      },
+      "id": "p2000000-0010-4000-8000-000000000010",
+      "name": "HubSpot Failure Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "sync_log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0011-4000-8000-000000000011",
+      "name": "Log HubSpot Failure",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1320,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "HubSpot API unavailable after retries. Sync aborted; cursor not moved."
+      },
+      "id": "p2000000-0012-4000-8000-000000000012",
+      "name": "Stop - HubSpot Unavailable",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "contacts",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "p2000000-0013-4000-8000-000000000013",
+      "name": "Read Contacts Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2000,
+        0
+      ],
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "deals",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "p2000000-0014-4000-8000-000000000014",
+      "name": "Read Deals Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2220,
+        0
+      ],
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Compares HubSpot changes with the sheet and decides what to write and what to notify.\nconst init = $('Init Run').first().json;\nconst now = init.run_started_at;\nconst v = (x) => (x === null || x === undefined ? '' : String(x));\n\nconst uniqueById = (list) => [...new Map(list.map((r) => [String(r.id), r])).values()];\nconst hsContacts = uniqueById($('HubSpot - Search Contacts').all().flatMap((i) => i.json.results || []));\nconst hsDeals = uniqueById($('HubSpot - Search Deals').all().flatMap((i) => i.json.results || []));\n\nconst stageLabels = {};\nfor (const p of $('HubSpot - Deal Pipelines').first().json.results || []) {\n  for (const s of p.stages || []) stageLabels[s.id] = s.label;\n}\n\nconst dealContact = {};\nif ($('HubSpot - Deal Contacts').isExecuted) {\n  for (const i of $('HubSpot - Deal Contacts').all()) {\n    for (const r of i.json.results || []) {\n      const first = (r.to || [])[0];\n      if (first) dealContact[String(r.from.id)] = String(first.toObjectId);\n    }\n  }\n}\n\nconst sheetRows = (node, key) => Object.fromEntries(\n  $(node).all().map((i) => i.json).filter((r) => v(r[key]) !== '').map((r) => [v(r[key]), r]),\n);\nconst sheetContacts = sheetRows('Read Contacts Sheet', 'hubspot_contact_id');\nconst sheetDeals = sheetRows('Read Deals Sheet', 'hubspot_deal_id');\n\n// Rows to upsert (only records that changed in HubSpot)\nconst contactRows = hsContacts.map((c) => {\n  const p = c.properties || {};\n  const row = {\n    hubspot_contact_id: v(c.id), email: v(p.email), first_name: v(p.firstname), last_name: v(p.lastname),\n    phone: v(p.phone), city: v(p.city), lead_source: v(p.lead_source), service_type: v(p.service_type),\n    lifecycle_stage: v(p.lifecyclestage), created_at: v(p.createdate), updated_at: v(p.lastmodifieddate),\n    synced_at: now, sync_status: 'ok',\n  };\n  // New rows start as \"pending alert\" (empty) - except on the first full copy.\n  if (!sheetContacts[row.hubspot_contact_id]) row.new_lead_notified = init.backfill ? 'backfill' : '';\n  return row;\n});\n\nconst dealRows = hsDeals.map((d) => {\n  const p = d.properties || {};\n  const dealId = v(d.id);\n  const existing = sheetDeals[dealId];\n  const row = {\n    hubspot_deal_id: dealId,\n    hubspot_contact_id: dealContact[dealId] || v(existing && existing.hubspot_contact_id),\n    deal_name: v(p.dealname), stage_id: v(p.dealstage), stage_label: stageLabels[p.dealstage] || v(p.dealstage),\n    amount: v(p.amount), created_at: v(p.createdate), updated_at: v(p.hs_lastmodifieddate),\n    is_closed: p.hs_is_closed === 'true', is_won: p.hs_is_closed_won === 'true',\n    synced_at: now, sync_status: 'ok',\n  };\n  // A new deal is not an alert by itself (the new lead alert covers it); only later stage changes are.\n  if (!existing) row.notified_stage = row.stage_id;\n  return row;\n});\n\n// Pending alerts come from the merged state, so alerts that failed in earlier runs are retried.\nconst merged = (sheet, rows, key) => {\n  const out = { ...sheet };\n  for (const r of rows) out[r[key]] = { ...(sheet[r[key]] || {}), ...r };\n  return Object.values(out);\n};\nconst SERVICE = { installation: 'Installation', maintenance: 'Maintenance', repair: 'Repair', inspection: 'Inspection', quote: 'Quote' };\nconst SOURCE = { website: 'Website', referral: 'Referral', google_ads: 'Google Ads', social_media: 'Social media', other: 'Other' };\n\nconst pending = [];\nfor (const c of merged(sheetContacts, contactRows, 'hubspot_contact_id')) {\n  if (v(c.new_lead_notified) !== '') continue;\n  const name = [c.first_name, c.last_name].filter(Boolean).join(' ') || 'Unnamed lead';\n  pending.push({\n    kind: 'contact', hubspot_contact_id: v(c.hubspot_contact_id),\n    message: `:new: *New lead:* ${name}\\nService: ${SERVICE[c.service_type] || c.service_type || 'n/a'} · City: ${c.city || 'n/a'} · Source: ${SOURCE[c.lead_source] || c.lead_source || 'n/a'}`,\n  });\n}\nfor (const d of merged(sheetDeals, dealRows, 'hubspot_deal_id')) {\n  const from = v(d.notified_stage);\n  const to = v(d.stage_id);\n  if (!from || !to || from === to) continue;\n  const won = d.is_won === true || v(d.is_won).toUpperCase() === 'TRUE';\n  pending.push({\n    kind: 'deal', hubspot_deal_id: v(d.hubspot_deal_id), stage_id: to,\n    message: `${won ? ':tada:' : ':arrows_counterclockwise:'} *Deal stage changed:* ${d.deal_name}\\n${stageLabels[from] || from} → *${stageLabels[to] || to}*`,\n  });\n}\n\nreturn [\n  ...contactRows.map((json) => ({ json })),\n  ...dealRows.map((json) => ({ json })),\n  { json: { _finish: true, mode: init.backfill ? 'backfill' : 'incremental', contacts: contactRows.length, deals: dealRows.length, pending } },\n];"
+      },
+      "id": "p2000000-0015-4000-8000-000000000015",
+      "name": "Build Sync Plan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 3,
+        "output": "={{ $json._finish ? 2 : ($json.hubspot_deal_id ? 1 : 0) }}"
+      },
+      "id": "p2000000-0016-4000-8000-000000000016",
+      "name": "Route Rows",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "contacts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "hubspot_contact_id"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0017-4000-8000-000000000017",
+      "name": "Upsert Contacts",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2900,
+        -180
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "deals",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "hubspot_deal_id"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0018-4000-8000-000000000018",
+      "name": "Upsert Deals",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2900,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { key: 'last_synced_at', value: $('Init Run').first().json.run_started_at } }];"
+      },
+      "id": "p2000000-0019-4000-8000-000000000019",
+      "name": "Cursor Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "sync_state",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "key"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0020-4000-8000-000000000020",
+      "name": "Update Cursor",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3120,
+        260
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "const fin = $('Build Sync Plan').all().map((i) => i.json).find((r) => r._finish);\nreturn [{ json: {\n  run_at: $('Init Run').first().json.run_started_at, object: 'sync', record_id: '', action: fin.mode, status: 'ok',\n  message: `contacts: ${fin.contacts}, deals: ${fin.deals}, pending alerts: ${fin.pending.length}`,\n} }];"
+      },
+      "id": "p2000000-0021-4000-8000-000000000021",
+      "name": "Run Log Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3340,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "sync_log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0022-4000-8000-000000000022",
+      "name": "Log Run",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3560,
+        260
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "jsCode": "const fin = $('Build Sync Plan').all().map((i) => i.json).find((r) => r._finish);\nreturn fin.pending.map((json) => ({ json }));"
+      },
+      "id": "p2000000-0023-4000-8000-000000000023",
+      "name": "Pending Notifications",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3780,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "#sales-alerts",
+          "mode": "name"
+        },
+        "text": "={{ $json.message }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "id": "p2000000-0024-4000-8000-000000000024",
+      "name": "Slack - Post Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        4000,
+        260
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const p = $('Pending Notifications').item.json;\nreturn p.kind === 'deal'\n  ? { json: { hubspot_deal_id: p.hubspot_deal_id, notified_stage: p.stage_id } }\n  : { json: { hubspot_contact_id: p.hubspot_contact_id, new_lead_notified: new Date().toISOString() } };"
+      },
+      "id": "p2000000-0025-4000-8000-000000000025",
+      "name": "Mark Notified",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4220,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 2,
+        "output": "={{ $json.hubspot_deal_id ? 1 : 0 }}"
+      },
+      "id": "p2000000-0026-4000-8000-000000000026",
+      "name": "Route Notified",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4440,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "contacts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "hubspot_contact_id"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0027-4000-8000-000000000027",
+      "name": "Mark Contact Notified",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4680,
+        60
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "deals",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "hubspot_deal_id"
+          ],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0028-4000-8000-000000000028",
+      "name": "Mark Deal Notified",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4680,
+        260
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const p = $('Pending Notifications').item.json;\nconst e = $json.error || {};\nreturn { json: {\n  run_at: new Date().toISOString(), object: p.kind, record_id: p.hubspot_deal_id || p.hubspot_contact_id,\n  action: 'notify', status: 'error', message: String(e.message || e || 'Slack error').slice(0, 180) + ' | will retry next run',\n} };"
+      },
+      "id": "p2000000-0029-4000-8000-000000000029",
+      "name": "Slack Failure Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4220,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "sync_log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "p2000000-0030-4000-8000-000000000030",
+      "name": "Log Slack Failure",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4440,
+        440
+      ]
+    }
+  ],
+  "connections": {
+    "Every 10 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Read Sync State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Sync State": {
+      "main": [
+        [
+          {
+            "node": "Init Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Init Run": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Search Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Search Contacts": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Search Deals",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot Failure Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Search Deals": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Deal Pipelines",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot Failure Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Deal Pipelines": {
+      "main": [
+        [
+          {
+            "node": "Collect Deal IDs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot Failure Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Deal IDs": {
+      "main": [
+        [
+          {
+            "node": "Any Deals Changed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Deals Changed?": {
+      "main": [
+        [
+          {
+            "node": "HubSpot - Deal Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Contacts Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot - Deal Contacts": {
+      "main": [
+        [
+          {
+            "node": "Read Contacts Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HubSpot Failure Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot Failure Row": {
+      "main": [
+        [
+          {
+            "node": "Log HubSpot Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log HubSpot Failure": {
+      "main": [
+        [
+          {
+            "node": "Stop - HubSpot Unavailable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Contacts Sheet": {
+      "main": [
+        [
+          {
+            "node": "Read Deals Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Deals Sheet": {
+      "main": [
+        [
+          {
+            "node": "Build Sync Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Sync Plan": {
+      "main": [
+        [
+          {
+            "node": "Route Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Rows": {
+      "main": [
+        [
+          {
+            "node": "Upsert Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upsert Deals",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cursor Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cursor Row": {
+      "main": [
+        [
+          {
+            "node": "Update Cursor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Cursor": {
+      "main": [
+        [
+          {
+            "node": "Run Log Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Log Row": {
+      "main": [
+        [
+          {
+            "node": "Log Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Run": {
+      "main": [
+        [
+          {
+            "node": "Pending Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pending Notifications": {
+      "main": [
+        [
+          {
+            "node": "Slack - Post Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack - Post Alert": {
+      "main": [
+        [
+          {
+            "node": "Mark Notified",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Slack Failure Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Notified": {
+      "main": [
+        [
+          {
+            "node": "Route Notified",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Notified": {
+      "main": [
+        [
+          {
+            "node": "Mark Contact Notified",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Deal Notified",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack Failure Row": {
+      "main": [
+        [
+          {
+            "node": "Log Slack Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "tags": []
+}
