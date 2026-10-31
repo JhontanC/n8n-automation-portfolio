@@ -3,6 +3,9 @@
 .env
 *.local.json
 
+# Personal notes (not part of the portfolio)
+PENDENCIAS.md
+
 # Demo videos are hosted outside the repo (YouTube / GitHub attachment)
 *.mp4
 *.mov
